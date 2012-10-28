@@ -68,7 +68,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\..\WebApiDemo\WebApiDemoCommon\WebApiDemoCommon.csproj">
+    <ProjectReference Include="..\..\WebApiDemoCommon\WebApiDemoCommon.csproj">
       <Project>{c9c0614b-362f-4ce3-8f7c-a91b7255ef7b}</Project>
       <Name>WebApiDemoCommon</Name>
     </ProjectReference>

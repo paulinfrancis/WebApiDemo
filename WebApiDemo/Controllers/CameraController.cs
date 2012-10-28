@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using WebApiDemo.Models;
+using WebApiDemo.Security;
 using WebApiDemoCommon;
 using Camera = WebApiDemoCommon.Models.Camera;
 
@@ -29,7 +30,7 @@ namespace WebApiDemo.Controllers
             {
                 throw new HttpResponseException(new HttpResponseMessage
 		        {
-			        StatusCode = HttpStatusCode.NotFound,
+			        StatusCode = HttpStatusCode.NotFound, //404
 			        Content = new StringContent(ex.Message)
 		        });
 	        }
@@ -46,14 +47,8 @@ namespace WebApiDemo.Controllers
 
                     var response = Request.CreateResponse(HttpStatusCode.Created, newCamera);
 
-                    var location = string.Format("{0}{1}{2}", Url.Request.RequestUri.OriginalString, "/", newCamera.Id);
-
-                    #region
-                    //TODO: Find out why route is not found
-                    //response.Headers.Location = new Uri(Url.Link("DefaultApi", new { controller = "Camera", id = newCamera.Id }));
-                    #endregion
-
-                    response.Headers.Location = new Uri(location); //Set location, so that the client knows where to find the newly created resource
+                    //Add location header entry to newly created resource, so comply with ReST constraints
+                    response.Headers.Location = new Uri(Url.Link("DefaultApi", new { controller = "Camera", id = newCamera.Id })); 
 
                     return response;
                 }
@@ -70,6 +65,7 @@ namespace WebApiDemo.Controllers
         }
 
         // PUT api/camera/5
+        [BasicAuthentication]
         public HttpResponseMessage Put(Camera camera)
         {
             if (ModelState.IsValid)
@@ -93,6 +89,7 @@ namespace WebApiDemo.Controllers
         }
 
         // DELETE api/camera/5
+        [BasicAuthentication]
         public void Delete(int id)
         {
             try

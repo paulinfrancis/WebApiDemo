@@ -167,7 +167,6 @@
     <Compile Include="Controllers\ApiDemoController.cs" />
     <Compile Include="Controllers\CameraController.cs" />
     <Compile Include="Controllers\MvcDemoController.cs" />
-    <Compile Include="Controllers\SecureCameraController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">

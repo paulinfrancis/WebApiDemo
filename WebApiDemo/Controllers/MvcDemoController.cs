@@ -1,20 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Web;
 using System.Web.Mvc;
+using System.Xml.Linq;
+using WebApiDemoCommon;
 
 namespace WebApiDemo.Controllers
 {
-    public class MvcDemoController : Controller
+    public class MvcDemoController : Controller //Inherits from Controller
     {
-        //
-        // GET: /Mvc/
-
-        public ActionResult Index()
+        //Returns result serialized as json
+        public JsonResult AJsonResult()
         {
-            return View();
+            return Json(new ExampleClass {ExampleProperty = "Something..."}, JsonRequestBehavior.AllowGet);
         }
 
+        //Returns result serialized as xml
+        public ActionResult AnXmlresult()
+        {
+            var obj = new ExampleClass { ExampleProperty = "Something..." };
+            var xdoc = new XDocument();
+
+            using (var writer = xdoc.CreateWriter())
+            {
+                var serializer = new DataContractSerializer(obj.GetType());
+                serializer.WriteObject(writer, obj); //Serialize object to xml
+            }
+
+            return Content(xdoc.ToString(), "text/xml");
+        }
     }
 }

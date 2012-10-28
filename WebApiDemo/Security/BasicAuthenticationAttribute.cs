@@ -11,14 +11,15 @@ namespace WebApiDemo.Security
     //Basic auth attribute - decorate controller class or individual controller actions
     public class BasicAuthenticationAttribute : System.Web.Http.Filters.ActionFilterAttribute
     {
+        //Run before action is run - we inspect the request's header to authenticate the user. If authentication fails, we return http 401 and request credentials.
         public override void OnActionExecuting(System.Web.Http.Controllers.HttpActionContext actionContext)
         {
             //Check that the header contains authorization
             if (actionContext.Request.Headers.Authorization == null)
             {
-                actionContext.Response = UnauthorizedResponseMessage();
+                actionContext.Response = UnauthorizedResponseMessage(); //No authorization in header - return 401
             }
-            else //Auth exists in header
+            else //Authentication exists in header
             {
                 var authToken = actionContext.Request.Headers.Authorization.Parameter;
                 var decodedToken = Encoding.UTF8.GetString(Convert.FromBase64String(authToken));
@@ -26,10 +27,10 @@ namespace WebApiDemo.Security
                 var username = decodedToken.Substring(0, decodedToken.IndexOf(":", StringComparison.Ordinal));
                 var password = decodedToken.Substring(decodedToken.IndexOf(":", StringComparison.Ordinal) + 1);
 
-                //Super secret password check
+                //Super advanced password check - use membership provider, etc irl :)
                 if (username == password)
                 {
-                    var user = new User {Username = username};
+                    var user = new User { Username = username };
 
                     HttpContext.Current.User = new GenericPrincipal(new ApiIdentity(user), new string[] { });
 
@@ -37,15 +38,17 @@ namespace WebApiDemo.Security
                 }
                 else //Invalid credentials
                 {
-                    actionContext.Response = UnauthorizedResponseMessage();
+                    actionContext.Response = UnauthorizedResponseMessage(); //return - 401
                 }
             }
         }
 
-        private HttpResponseMessage UnauthorizedResponseMessage()
+        private static HttpResponseMessage UnauthorizedResponseMessage()
         {
             var response = new HttpResponseMessage(System.Net.HttpStatusCode.Unauthorized);
-            response.Headers.Add("WWW-Authenticate", "Basic");
+            //Instructs client to provide credentials using basic authentication. 
+            //Browsers understand this and prompt for username and password.
+            response.Headers.Add("WWW-Authenticate", "Basic"); 
             return response;
         }
     }

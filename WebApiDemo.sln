@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiDemo.Tests", "WebApiD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiDemoCommon", "WebApiDemoCommon\WebApiDemoCommon.csproj", "{C9C0614B-362F-4CE3-8F7C-A91B7255EF7B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SelfHostingDemo", "SelfHostingDemo\SelfHostingDemo\SelfHostingDemo.csproj", "{60E97F01-7F87-4698-9EC2-04ACF7A01B45}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{C9C0614B-362F-4CE3-8F7C-A91B7255EF7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9C0614B-362F-4CE3-8F7C-A91B7255EF7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9C0614B-362F-4CE3-8F7C-A91B7255EF7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60E97F01-7F87-4698-9EC2-04ACF7A01B45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60E97F01-7F87-4698-9EC2-04ACF7A01B45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60E97F01-7F87-4698-9EC2-04ACF7A01B45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60E97F01-7F87-4698-9EC2-04ACF7A01B45}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
