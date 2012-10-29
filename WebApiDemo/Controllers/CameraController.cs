@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using WebApiDemo.Models;
 using WebApiDemo.Security;
 using WebApiDemoCommon;
 using Camera = WebApiDemoCommon.Models.Camera;

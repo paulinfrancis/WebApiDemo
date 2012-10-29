@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+﻿using System.Web.Http;
 using WebApiDemoCommon;
 
 namespace WebApiDemo.Controllers
@@ -13,7 +8,7 @@ namespace WebApiDemo.Controllers
         //Returns in specified format (accept: ), or defaults to json
         public ExampleClass Get()
         {
-            return new ExampleClass{ ExampleProperty = "Something..." };
+            return new ExampleClass { ExampleProperty = "Something..." };
         }
     }
 }
