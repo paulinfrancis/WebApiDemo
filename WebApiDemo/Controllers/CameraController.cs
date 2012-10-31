@@ -59,7 +59,7 @@ namespace WebApiDemo.Controllers
 
             //Modelstate is invalid
             var modelValidationErrorResponse = Request.CreateResponse(HttpStatusCode.BadRequest);
-            modelValidationErrorResponse.Content = new StringContent(ValidationHelper.GetModelErrors(ModelState));
+            modelValidationErrorResponse.Content = new StringContent(ModelState.GetModelErrors());
             return modelValidationErrorResponse;
         }
 
@@ -83,7 +83,7 @@ namespace WebApiDemo.Controllers
 
             //Modelstate is invalid
             var modelValidationErrorResponse = Request.CreateResponse(HttpStatusCode.BadRequest);
-            modelValidationErrorResponse.Content = new StringContent(ValidationHelper.GetModelErrors(ModelState));
+            modelValidationErrorResponse.Content = new StringContent(ModelState.GetModelErrors());
             return modelValidationErrorResponse;
         }
 

@@ -34,11 +34,12 @@ namespace WebApiDemo.Security
 
                     HttpContext.Current.User = new GenericPrincipal(new ApiIdentity(user), new string[] { });
 
+                    //Authorized - continue
                     base.OnActionExecuting(actionContext);
                 }
                 else //Invalid credentials
                 {
-                    actionContext.Response = UnauthorizedResponseMessage(); //return - 401
+                    actionContext.Response = UnauthorizedResponseMessage(); //return - 401 with WWW-Authenticate: Basic
                 }
             }
         }

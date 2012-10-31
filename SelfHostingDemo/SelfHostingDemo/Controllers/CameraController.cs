@@ -47,11 +47,6 @@ namespace SelfHostingDemo.Controllers
 
                     var location = string.Format("{0}{1}{2}", Url.Request.RequestUri.OriginalString, "/", newCamera.Id);
 
-                    #region
-                    //TODO: Find out why route is not found
-                    //response.Headers.Location = new Uri(Url.Link("DefaultApi", new { controller = "Camera", id = newCamera.Id }));
-                    #endregion
-
                     response.Headers.Location = new Uri(location); //Set location, so that the client knows where to find the newly created resource
 
                     return response;
@@ -63,7 +58,7 @@ namespace SelfHostingDemo.Controllers
             }
 
             var modelValidationErrorResponse = Request.CreateResponse(HttpStatusCode.BadRequest);
-            modelValidationErrorResponse.Content = new StringContent(ValidationHelper.GetModelErrors(ModelState));
+            modelValidationErrorResponse.Content = new StringContent(ModelState.GetModelErrors());
             return modelValidationErrorResponse;
         }
 
@@ -85,7 +80,7 @@ namespace SelfHostingDemo.Controllers
             }
 
             var modelValidationErrorResponse = Request.CreateResponse(HttpStatusCode.BadRequest);
-            modelValidationErrorResponse.Content = new StringContent(ValidationHelper.GetModelErrors(ModelState));
+            modelValidationErrorResponse.Content = new StringContent(ModelState.GetModelErrors());
             return modelValidationErrorResponse;
         }
 

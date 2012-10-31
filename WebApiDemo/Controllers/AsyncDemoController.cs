@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -19,7 +14,7 @@ namespace WebApiDemo.Controllers
 
         private async Task<string> AReallyslowAsyncMethod()
         {
-            var slowTask = Task.Factory.StartNew<string>(
+            var slowTask = Task.Factory.StartNew(
               () =>
                   {
                       Thread.Sleep(10000);
