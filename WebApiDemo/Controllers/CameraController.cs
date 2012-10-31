@@ -11,7 +11,6 @@ namespace WebApiDemo.Controllers
 {
     public class CameraController : ApiController
     {
-
         // GET api/camera
         public IEnumerable<Camera> Get()
         {
@@ -58,13 +57,12 @@ namespace WebApiDemo.Controllers
             }
 
             //Modelstate is invalid
-            var modelValidationErrorResponse = Request.CreateResponse(HttpStatusCode.BadRequest);
+            var modelValidationErrorResponse = Request.CreateResponse(HttpStatusCode.BadRequest); //400
             modelValidationErrorResponse.Content = new StringContent(ModelState.GetModelErrors());
             return modelValidationErrorResponse;
         }
 
         // PUT api/camera/5
-        [BasicAuthentication]
         public HttpResponseMessage Put(Camera camera)
         {
             if (ModelState.IsValid)
@@ -82,7 +80,7 @@ namespace WebApiDemo.Controllers
             }
 
             //Modelstate is invalid
-            var modelValidationErrorResponse = Request.CreateResponse(HttpStatusCode.BadRequest);
+            var modelValidationErrorResponse = Request.CreateResponse(HttpStatusCode.BadRequest); //400
             modelValidationErrorResponse.Content = new StringContent(ModelState.GetModelErrors());
             return modelValidationErrorResponse;
         }
